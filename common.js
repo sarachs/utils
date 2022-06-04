@@ -41,7 +41,7 @@ function addZero(x, n) {
  */
 function getNowDateTime() {
     const d = new Date();
-    const year = addZero(d.getFullYear(), 4);
+    const year = d.getFullYear();
     const month = addZero(d.getMonth() + 1, 2);
     const day = addZero(d.getDate(), 2);
 
