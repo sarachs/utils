@@ -18,3 +18,36 @@ function createAsyncFn(type = true, content = "hello", delay = 1000) {
         }, delay);
     });
 }
+
+/**
+ * 位数不够，在前面补0
+ * @private
+ * @param {Number} x 原数值
+ * @param {Number} n 位数
+ * @returns {String | Number} 补好0的值
+ * @example addZero(5,2) => "05" addZero(2022,4) => 2022
+ */
+function addZero(x, n) {
+    while (x.toString().length < n) {
+        x = "0" + x;
+    }
+    return x;
+}
+
+/**
+ * 获取当前日期时间 带毫秒数
+ * @returns {String}
+ * @example getNowDateTime() => "2022-06-04 22:19:51.236"
+ */
+function getNowDateTime() {
+    const d = new Date();
+    const year = addZero(d.getFullYear(), 4);
+    const month = addZero(d.getMonth() + 1, 2);
+    const day = addZero(d.getDate(), 2);
+
+    const hours = addZero(d.getHours(), 2);
+    const minutes = addZero(d.getMinutes(), 2);
+    const seconds = addZero(d.getSeconds(), 2);
+    const ms = addZero(d.getMilliseconds(), 3);
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${ms}`;
+}
