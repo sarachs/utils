@@ -51,3 +51,20 @@ function getNowDateTime() {
     const ms = addZero(d.getMilliseconds(), 3);
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${ms}`;
 }
+
+
+let lastClickTime = 0;
+/**
+ * 防止二次提交
+ * @returns
+ */
+function handlerClick1001() {
+    const nowTime = new Date().getTime();
+    if (nowTime - lastClickTime > 3000) {
+        lastClickTime = nowTime;
+    } else {
+        console.log("3秒内不允许重复点击！");
+        return;
+    }
+    console.log("正常执行代码了");
+}
