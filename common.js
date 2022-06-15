@@ -88,15 +88,15 @@ function getRandomIntInclusive(min, max) {
  * @return { Promise }
  */
 function to(promise, errorExt) {
-	return promise
-		.then(function (data) {
-			return [null, data];
-		})
-		.catch(function (err) {
-			if (errorExt) {
-				var parsedError = Object.assign({}, err, errorExt);
-				return [parsedError, undefined];
-			}
-			return [err, undefined];
-		});
+    return promise
+        .then(function(data) {
+            return [null, data];
+        })
+        .catch(function(err) {
+            if (errorExt) {
+                var parsedError = Object.assign({}, err, errorExt);
+                return [parsedError, undefined];
+            }
+            return [err, undefined];
+        });
 }
