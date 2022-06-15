@@ -80,3 +80,23 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
 }
+
+/**
+ * await-to-js
+ * @param { Promise } promise
+ * @param { Object= } errorExt - Additional Information you can pass to the err object
+ * @return { Promise }
+ */
+function to(promise, errorExt) {
+	return promise
+		.then(function (data) {
+			return [null, data];
+		})
+		.catch(function (err) {
+			if (errorExt) {
+				var parsedError = Object.assign({}, err, errorExt);
+				return [parsedError, undefined];
+			}
+			return [err, undefined];
+		});
+}
