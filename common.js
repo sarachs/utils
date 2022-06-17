@@ -35,6 +35,18 @@ function addZero(x, n) {
 }
 
 /**
+ * 获取URL查询参数
+ * @returns {Object}
+ */
+function getUrlParams() {
+	const qs = window.location.search.length ? window.location.search.substring(1) : "";
+	const qsArr = qs.split("&").map(item => item.split("="));
+	const args = {};
+	qsArr.forEach(ele => (args[ele[0]] = ele[1]));
+	return args;
+}
+
+/**
  * 获取当前日期时间 带毫秒数
  * @returns {String}
  * @example getNowDateTime() => "2022-06-04 22:19:51.236"
