@@ -116,18 +116,17 @@ function getUrlParams() {
 
 /***
  * 节流(throttle): 高频事件在规定时间内只会执行一次，执行一次后，只有大于设定的执行周期后才会执行第二次。
- * @param {Function} fn 方法
- * @param {Number}   wait 延迟 ms
+ * @param {Function} fn 函数
+ * @param {Number} wait 延迟 ms
  * @return {Function}
  */
-function throttle2(fn, wait = 200) {
-  console.log( 'throttle2', arguments )
+function throttle(fn, wait = 1000) {
 	let pre = 0
-  console.log('this:>>', this)
+	// 返回结果是一个函数
 	return function (...args) {
-    console.log( 'return fun', args )
 		let now = Date.now()
 		if (now - pre > wait) {
+			// apply 方法调用一个具有给定this值的函数，以及以一个数组的形式提供的参数。
 			fn.apply(this, args)
 			pre = now
 		}
