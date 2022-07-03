@@ -112,3 +112,24 @@ function getUrlParams() {
     qsArr.forEach(ele => (args[ele[0]] = ele[1]));
     return args;
 }
+
+
+/***
+ * 节流(throttle): 高频事件在规定时间内只会执行一次，执行一次后，只有大于设定的执行周期后才会执行第二次。
+ * @param {Function} fn 方法
+ * @param {Number}   wait 延迟 ms
+ * @return {Function}
+ */
+function throttle2(fn, wait = 200) {
+  console.log( 'throttle2', arguments )
+	let pre = 0
+  console.log('this:>>', this)
+	return function (...args) {
+    console.log( 'return fun', args )
+		let now = Date.now()
+		if (now - pre > wait) {
+			fn.apply(this, args)
+			pre = now
+		}
+	}
+}
